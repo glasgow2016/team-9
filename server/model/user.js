@@ -1,12 +1,26 @@
+"use strict";
+
+const util = require("./util");
+const _ = require("lodash");
 
 class User {
   constructor(deviceId, username) {
     this.deviceId = deviceId;
     this.username = username;
+    this.puzzlesCompleted = [];
+  }
+
+  updateLocation(lat, long) {
+    this.lastKnownLocation = {lat:lat, long:long};
   }
 
   getJSON() {
-    return JSON.stringify(this);
+    let serializable = _.cloneDeepWith(this,util.modelToIdCustomizer);
+    return JSON.stringify(serializable);
+  }
+
+  addCompletedPuzzle(puzzle) {
+    this.puzzlesCompleted.add(puzzle);
   }
 }
 
