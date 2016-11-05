@@ -1,8 +1,12 @@
 
 class User {
-  constructor(deviceId, userName) {
+  constructor(deviceId, username) {
     this.deviceId = deviceId;
-    this.userName = userName;
+    this.username = username;
+  }
+
+  getJSON() {
+    return JSON.stringify(this);
   }
 }
 
