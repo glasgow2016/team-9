@@ -39,13 +39,20 @@ app.get("/user/:deviceId", function(req, res) {
     res.send(dataStore.getUser(req.params.deviceId));
   }
   catch (err) {
-    console.log(err);
-    res.send(JSON.stringify({err:err.message}));
+    let errObj = {err:err.message};
+    console.log("Error: " + JSON.stringify(errObj));
+    res.send(JSON.stringify(errObj));
   }
 });
 
-app.post("/user/:deviceId/completed/:puzzleId", function(req, res) {
-
+app.post("/puzzle/:puzzleId/completed", function(req, res) {
+  try {
+    dataStore.solveNearby(puzzleId);
+  } catch (err) {
+    let errObj = {err:err.message};
+    console.log("Err: " + JSON.stringify(errObj));
+    res.send(JSON.stringify(errObj));
+  }
 });
 
 
