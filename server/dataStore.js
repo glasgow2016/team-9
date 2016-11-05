@@ -29,7 +29,24 @@ let getUser = function(deviceId) {
   return users[deviceId];
 }
 
+let updateUserLocation = function(deviceId, locationObj) {
+  if(!_.hasIn(users, deviceId)) {
+    throw new Error("User not registered");
+  }
+
+  if(!_.hasIn(locationObj, "lat")) {
+    throw new Error("Latitude not found");
+  }
+
+  if(!_.hasIn(locationObj, "long")) {
+    throw new Error("Longitude not found");
+  }
+
+  users[deviceId].updateLocation(locationObj.lat, locationObj.long);
+}
+
 module.exports = {
   getUser: getUser,
-  registerUser: registerUser
+  registerUser: registerUser,
+  updateUserLocation: updateUserLocation
 }
