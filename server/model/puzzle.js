@@ -1,8 +1,9 @@
 "use strict";
 
 class Puzzle {
-  constructor(puzzleId) {
+  constructor(puzzleId, location) {
     this.puzzleId = puzzleId;
+    this.location = location;
   }
 }
 
