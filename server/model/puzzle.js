@@ -5,9 +5,6 @@ class Puzzle {
     this.puzzleId = puzzleId;
     this.location = location;
   }
-  get location() {
-    return this.location;
-  }
 
   getJSON() {
     let serializable = _.cloneDeepWith(this,util.modelToIdCustomizer(this));
