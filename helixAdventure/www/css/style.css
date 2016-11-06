@@ -1,8 +1,14 @@
 
 div.center_vertical {
   position: relative;
-  /*left: 30%;*/
-  /*top: 40%;*/
+  left: 25%;
+  top: 10%;
+}
+
+div.center_table {
+  position: relative;
+  right: 5%;
+  top: 10%;
 }
 
 /* Always set the map height explicitly to

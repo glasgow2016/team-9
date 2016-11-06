@@ -1,5 +1,5 @@
 var challenges = [
-  {"question":"Which element does a kelpie spirit belongs to?",
+  {"question":"Which element does a Kelpie spirit belongs to?",
     "option1":"fire",
     "option2":"air",
     "option3":"earth",
