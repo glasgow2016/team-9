@@ -53,7 +53,7 @@ while True:
     cv2.imwrite("original.png", image)
 
     # define the colour boundary
-    boundary = ([30, 30, 150], [150, 150, 255]);
+    boundary = ([0, 0, 150], [100, 100, 255]);
 
     # create the mask
     lower = np.array(boundary[0], dtype = "uint8")
@@ -94,9 +94,9 @@ while True:
                 r = requests.post("https://ai26.host.cs.st-andrews.ac.uk/helix/puzzle/123")
                 break
             else:
-                print False
+                print "false"
         else:
-            print False
+            print "false"
 
     #write the image file
     cv2.imwrite("colourblock.png", output)
