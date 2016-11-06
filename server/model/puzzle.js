@@ -1,18 +1,16 @@
 "use strict";
 
-class Puzzle {
-  constructor(puzzleId, location) {
+const utilModel = require("./util");
+
+module.exports = class Puzzle {
+  constructor(puzzleId, location, type, data) {
     this.puzzleId = puzzleId;
     this.location = location;
-  }
-  get location() {
-    return this.location;
+    this.type = type;
+    this.data = data;
   }
 
   getJSON() {
-    let serializable = _.cloneDeepWith(this,util.modelToIdCustomizer(this));
-    return JSON.stringify(serializable);
+    return JSON.stringify(this);
   }
 }
-
-module.exports = Puzzle;

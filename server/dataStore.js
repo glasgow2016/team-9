@@ -4,11 +4,32 @@ const _ = require("lodash");
 const geolib = require("geolib");
 
 const User = require("./model/user");
+const Puzzle = require("./model/puzzle");
 
 const DISTANCE_THRESHOLD = 10;
 
 const users = {};
 const puzzles = {};
+
+let addPuzzle = function (puzzleId, puzzleData) {
+  if(_.hasIn(puzzles, puzzleId)) {
+    throw new Error("Puzzle id already used");
+  }
+
+  if(!_.hasIn(puzzleData, "location")) {
+    throw new Error("No location specified for puzzle");
+  }
+
+  if(!_.hasIn(puzzleData, "type")) {
+    throw new Error("No type specified for puzzle");
+  }
+
+  if(!_.hasIn(puzzleData.location, "latitude") || !_.hasIn(puzzleData.location, "longitude")) {
+    throw new Error("Invalid location specified for puzzle");
+  }
+
+  puzzles[puzzleId] = new Puzzle(puzzleId, puzzleData.location, puzzleData.type, puzzleData.data);
+}
 
 let registerUser = function(userData) {
   if(!_.hasIn(userData, "deviceId")) {
@@ -19,11 +40,7 @@ let registerUser = function(userData) {
     throw new Error("User already registered");
   }
 
-  if(!_.hasIn(userData, "username")) {
-    throw new Error("Username not provided");
-  }
-
-  users[userData.deviceId] = new User(userData.deviceId, userData.username);
+  users[userData.deviceId] = new User(userData.deviceId);
 }
 
 let getUser = function(deviceId) {
@@ -39,15 +56,15 @@ let updateUserLocation = function(deviceId, locationObj) {
     throw new Error("User not registered");
   }
 
-  if(!_.hasIn(locationObj, "lat")) {
+  if(!_.hasIn(locationObj, "latitude")) {
     throw new Error("Latitude not found");
   }
 
-  if(!_.hasIn(locationObj, "long")) {
+  if(!_.hasIn(locationObj, "longitude")) {
     throw new Error("Longitude not found");
   }
 
-  users[deviceId].updateLocation(locationObj.lat, locationObj.long);
+  users[deviceId].updateLocation(locationObj.latitude, locationObj.longitude);
 }
 
 let solveNearby = function(puzzleId) {
@@ -69,5 +86,7 @@ let solveNearby = function(puzzleId) {
 module.exports = {
   getUser: getUser,
   registerUser: registerUser,
-  updateUserLocation: updateUserLocation
+  updateUserLocation: updateUserLocation,
+  addPuzzle: addPuzzle,
+  solveNearby: solveNearby
 }

@@ -1,21 +1,24 @@
 "use strict";
 
-const User = require("./user");
+const _ = require("lodash");
 
-let modelToIdCustomizer = function(rootObject) {
-  let firstRoot = false;
-  return function(value) {
-    if (!firstRoot && value != rootObject) {
-      if (value instanceof User.constructor) {
-        return value.deviceId;
-      }
-      if (value instanceof Puzzle.constructor) {
-        return value.puzzleId;
-      }
-    }
-    else {
-      firstRoot = true;
-    }
+const User = require("./user");
+const Puzzle = require("./puzzle");
+
+let modelToIdCustomizer = function modelToIdCustomizer(rootObject) {
+  return function customizer(value) {
+    console.log(JSON.stringify(value));
+    console.log(typeof value);
+    // if (!Object.is(value, rootObject)) {
+    //   if (value instanceof User.constructor) {
+    //     console.log("ParsingUser");
+    //     return value.deviceId;
+    //   }
+    //   if (value instanceof Puzzle.constructor) {
+    //     console.log("Puzzle parsing");
+    //     return value.puzzleId;
+    //   }
+    // }
     return value;
   }
 }
