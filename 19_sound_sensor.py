@@ -14,8 +14,9 @@ def loop():
 		voiceValue = ADC.read(0)
 		if voiceValue:
 			print 'Value:', voiceValue
-			if voiceValue < 50:
+			if voiceValue > 128:
 				print "Voice detected! ", count
+				//Speech Recognition logic here...
 				count += 1
 			time.sleep(0.2)
 
