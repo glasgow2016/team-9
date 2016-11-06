@@ -59,4 +59,3 @@ for c in cnts:
 
 #write the image file
 cv2.imwrite("colourblock.png", output)
-cv2.waitKey(0)
