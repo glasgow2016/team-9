@@ -1,12 +1,11 @@
 "use strict";
 
-const util = require("./util");
+const modelUtil = require("./util");
 const _ = require("lodash");
 
-class User {
+module.exports = class User {
   constructor(deviceId, username) {
     this.deviceId = deviceId;
-    this.username = username;
     this.puzzlesCompleted = [];
   }
 
@@ -15,17 +14,14 @@ class User {
   }
 
   updateLocation(lat, long) {
-    this.lastKnownLocation = {lat:lat, long:long};
+    this.lastKnownLocation = {latitude:lat, longitude:long};
   }
 
   getJSON() {
-    let serializable = _.cloneDeepWith(this,util.modelToIdCustomizer(this));
-    return JSON.stringify(serializable);
+    return JSON.stringify(this);
   }
 
   addCompletedPuzzle(puzzle) {
     this.puzzlesCompleted.add(puzzle);
   }
 }
-
-module.exports = User
