@@ -2,11 +2,11 @@ angular.module('starter.controllers', [])
 
   .controller('HomeCtrl', function ($scope, $state) {
     $scope.showInfo = function () {
-      $state.go("#/tab/home/info");
+      $state.go("tab.home-info");
     }
 
-    $scope.showMap = function () {
-      $state.go("#/tab/map");
+    $scope.startGame = function () {
+      $state.go("tab.challenge");
     }
   })
 
