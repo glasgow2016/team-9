@@ -43,25 +43,19 @@ for c in cnts:
         cv2.circle(output, (int(x), int(y)), 5, (0, 0, 255), -1)
 
     (tl, tr, br, bl) = box
-    (tltrX, tltrY) = midpoint(tl, tr)
-    (blbrX, blbrY) = midpoint(bl, br)
- 
-    # compute the midpoint between the top-left and top-right points,
-    # followed by the midpoint between the top-righ and bottom-right
-    (tlblX, tlblY) = midpoint(tl, bl)
-    (trbrX, trbrY) = midpoint(tr, br)
- 
-    # draw the midpoints on the image
-    cv2.circle(output, (int(tltrX), int(tltrY)), 5, (255, 0, 0), -1)
-    cv2.circle(output, (int(blbrX), int(blbrY)), 5, (255, 0, 0), -1)
-    cv2.circle(output, (int(tlblX), int(tlblY)), 5, (255, 0, 0), -1)
-    cv2.circle(output, (int(trbrX), int(trbrY)), 5, (255, 0, 0), -1)
 
-    # draw lines between the midpoints
-    cv2.line(output, (int(tltrX), int(tltrY)), (int(blbrX), int(blbrY)),
-	    (255, 0, 255), 2)
-    cv2.line(output, (int(tlblX), int(tlblY)), (int(trbrX), int(trbrY)),
-	    (255, 0, 255), 2)
+    topMid = midpoint(tl, tr)
+    botMid = midpoint(bl, br)
+    leftMid = midpoint(tl, bl)
+    rightMid = midpoint(tr, br)
+
+    if abs(botMid[1] - topMid[1]) > 10:
+        if abs(rightMid[0] - leftMid[0]) > 10:
+            print "true"
+        else:
+            print "false"
+    else:
+        print "false"
 
 #write the image file
 cv2.imwrite("colourblock.png", output)
