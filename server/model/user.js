@@ -19,7 +19,7 @@ class User {
   }
 
   getJSON() {
-    let serializable = _.cloneDeepWith(this,util.modelToIdCustomizer);
+    let serializable = _.cloneDeepWith(this,util.modelToIdCustomizer(this));
     return JSON.stringify(serializable);
   }
 

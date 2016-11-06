@@ -4,11 +4,28 @@ const _ = require("lodash");
 const geolib = require("geolib");
 
 const User = require("./model/user");
+const Puzzle = require("./model/puzzle");
 
 const DISTANCE_THRESHOLD = 10;
 
 const users = {};
 const puzzles = {};
+
+let addPuzzle = function (puzzleId, puzzleData) {
+  if(_.hasIn(puzzles, puzzleId)) {
+    throw new Error("Puzzle id already used");
+  }
+
+  if(!_.hasIn(puzzleData, "location")) {
+    throw new Error("No location specified for puzzle");
+  }
+
+  if(!_.hasIn(puzzleData.location, "lat") || !_.hasIn(puzzleData.location, "long")) {
+    throw new Error("Invalid location specified for puzzle");
+  }
+
+  puzzles[puzzleId] = new Puzzle(puzzleId, puzzleData.location);
+}
 
 let registerUser = function(userData) {
   if(!_.hasIn(userData, "deviceId")) {
@@ -69,5 +86,7 @@ let solveNearby = function(puzzleId) {
 module.exports = {
   getUser: getUser,
   registerUser: registerUser,
-  updateUserLocation: updateUserLocation
+  updateUserLocation: updateUserLocation,
+  addPuzzle: addPuzzle,
+  solveNearby: solveNearby
 }

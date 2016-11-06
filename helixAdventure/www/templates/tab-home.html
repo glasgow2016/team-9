@@ -1,24 +1,23 @@
 <ion-view view-title="Home">
-  <ion-content class="padding">
-      <div>
-        <div class="center_vertical">
-          <a href="#/tab/home/" style="text-decoration:none" class="action_image vertical-middle horizontal-middle">
-            <button class="button button-balanced">
-                <img class="image" src="img/tree.png" width="200px"/>
-                <div class="home_text">
-                  Info
-                </div>
-            </button>
+  <ion-nav-bar class="bar-stable bar-positive">
 
-            <button class="button button-positive">
-              <img class="image" src="img/map.png" width="200px"/>
+    <button class="button icon-left ion-home"></button>
+
+  </ion-nav-bar>
+    <ion-content class="padding">
+        <div class="center_vertical">
+            <button class="button button-balanced" ng-click="showInfo()">
+              <img class="image" ng-src="img/tree.png" width="200px"/>
+              <div class="home_text">
+                Info
+              </div>
+            </button>
+            <button class="button button-positive" ng-click="showMap()">
+              <img class="image" ng-src="img/map.png" width="200px"/>
               <div class="home_text">
                 My map
               </div>
             </button>
-
-          </a>
         </div>
-      </div>
-  </ion-content>
+    </ion-content>
 </ion-view>
