@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-  .controller('HomeCtrl', function ($scope, $state) {
+  .controller('HomeCtrl', function ($scope, $state,$http) {
     $scope.showInfo = function () {
       $state.go("tab.home-info");
     }
@@ -8,6 +8,18 @@ angular.module('starter.controllers', [])
     $scope.startGame = function () {
       $state.go("tab.home-whyHere");
     }
+
+    var deviceId = ionic.Platform.device().uuid || "testId";
+    console.log(deviceId);
+    $http.post("http://localhost:8000/user/register", {deviceId:deviceId})
+      .then(function(data) {
+        if(typeof data.err !== "undefined") {
+          alert("server err: " + data.err);
+        }
+      },
+      function(err) {
+        alert("err: " + JSON.stringify(err));
+      })
   })
 
 
