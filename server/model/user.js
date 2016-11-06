@@ -14,17 +14,14 @@ module.exports = class User {
   }
 
   updateLocation(lat, long) {
-    this.lastKnownLocation = {lat:lat, long:long};
+    this.lastKnownLocation = {latitude:lat, longitude:long};
   }
 
   getJSON() {
-    let serializable = _.cloneDeepWith(this,util.modelToIdCustomizer(this));
-    return JSON.stringify(serializable);
+    return JSON.stringify(this);
   }
 
   addCompletedPuzzle(puzzle) {
     this.puzzlesCompleted.add(puzzle);
   }
 }
-
-module.exports = User
