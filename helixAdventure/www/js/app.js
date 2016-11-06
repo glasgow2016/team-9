@@ -56,19 +56,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
           }
         }
       })
-
-      .state('tab.home-registration', {
-        url: '/home/registration',
-        cache: false,
-        views: {
-          'tab-home': {
-            templateUrl: 'templates/tab-registration.html',
-            controller: 'RegCtrl'
-          }
-        }
-      })
-
-
       .state('tab.challenge', {
         url: '/home/challenge',
         views: {

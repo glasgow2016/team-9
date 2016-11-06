@@ -14,4 +14,4 @@ div.center_table {
 /* Always set the map height explicitly to
  define the size of the div * element
  that contains the map. */
- #map-canvas { height: 700px; margin: 0; padding: 0; }
+ #map-canvas { height: 900px; margin: 0; padding: 0; }

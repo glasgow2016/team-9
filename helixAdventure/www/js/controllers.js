@@ -11,24 +11,15 @@ angular.module('starter.controllers', [])
 
     var deviceId = ionic.Platform.device().uuid || "testId";
     console.log(deviceId);
-    $http.post("http://localhost:8000/user/register", {deviceId:deviceId})
+    $http.post("https://ai26.host.cs.st-andrews.ac.uk/user/register", {deviceId:deviceId})
       .then(function(data) {
         if(typeof data.err !== "undefined") {
           alert("server err: " + data.err);
         }
       },
       function(err) {
-        alert("err: " + JSON.stringify(err));
+        // alert("err: " + JSON.stringify(err));
       })
-})
-
-
-.controller('RegCtrl', function($scope, $localStorage) {
-  $scope.$storage = $localStorage({
-
-  });
-
-  $scope.registered = true;
 })
 
   .controller('WhyCtrl', function ($scope, $state) {
