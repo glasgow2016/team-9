@@ -46,8 +46,11 @@ angular.module('starter.controllers', [])
 
     $scope.challenges = challenges;
 
+    $scope.isAnswered = false;
 
-
+    $scope.answer = function() {
+        $scope.isAnswered = true;
+    }
   })
 
 .controller('MapCtrl', function($scope) {

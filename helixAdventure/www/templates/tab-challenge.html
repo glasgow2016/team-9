@@ -29,7 +29,9 @@
         </div>
       </div>
 
-      <div class="card answer-card">
+      <button class="button button-calm " ng-click="answer()">Answer</button>
+
+      <div ng-if="isAnswered" class="card answer-card">
         <div class="item item-divider">
           Answer:
         </div>
