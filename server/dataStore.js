@@ -1,9 +1,14 @@
 "use strict";
 
 const _ = require("lodash");
+const geolib = require("geolib");
+
 const User = require("./model/user");
 
+const DISTANCE_THRESHOLD = 10;
+
 const users = {};
+const puzzles = {};
 
 let registerUser = function(userData) {
   if(!_.hasIn(userData, "deviceId")) {
@@ -43,6 +48,22 @@ let updateUserLocation = function(deviceId, locationObj) {
   }
 
   users[deviceId].updateLocation(locationObj.lat, locationObj.long);
+}
+
+let solveNearby = function(puzzleId) {
+  if(!_.hasIn(puzzles, puzzleId)) {
+    throw new Error("Puzzle not found");
+  }
+
+  let puzzleLocation = puzzles[puzzleId].location;
+
+  _.forIn(users, function(user) {
+    let userLocation = user.lastKnownLocation;
+    let distance = geolib.getDistance(userLocation, puzzleLocation);
+    if(distance <= DISTANCE_THRESHOLD) {
+      user.solvePuzzle(puzzles[puzzleId]);
+    }
+  });
 }
 
 module.exports = {

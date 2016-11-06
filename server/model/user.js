@@ -10,6 +10,10 @@ class User {
     this.puzzlesCompleted = [];
   }
 
+  solvePuzzle(puzzle) {
+    this.puzzlesCompleted.push(puzzle);
+  }
+
   updateLocation(lat, long) {
     this.lastKnownLocation = {lat:lat, long:long};
   }
