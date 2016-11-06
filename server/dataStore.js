@@ -20,11 +20,15 @@ let addPuzzle = function (puzzleId, puzzleData) {
     throw new Error("No location specified for puzzle");
   }
 
+  if(!_.hasIn(puzzleData, "type")) {
+    throw new Error("No type specified for puzzle");
+  }
+
   if(!_.hasIn(puzzleData.location, "latitude") || !_.hasIn(puzzleData.location, "longitude")) {
     throw new Error("Invalid location specified for puzzle");
   }
 
-  puzzles[puzzleId] = new Puzzle(puzzleId, puzzleData.location);
+  puzzles[puzzleId] = new Puzzle(puzzleId, puzzleData.location, puzzleData.type, puzzleData.data);
 }
 
 let registerUser = function(userData) {

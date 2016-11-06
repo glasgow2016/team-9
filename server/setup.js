@@ -21,14 +21,14 @@ module.exports = function() {
     },
     type: "Question",
     data: {
-      question: "Which is the best kelsey?",
+      question: "Which element does a kelpie spirit belongs to?",
       choices: [
-        "Tom Kelsey",
-        "Tom Kelsey",
-        "Tom Not Kelsey",
-        "Tom Greatest Kelsey"
+        "fire",
+        "air",
+        "earth",
+        "water"
       ],
-      answer:1
+      answer:3
     }
-  })
+  });
 }
