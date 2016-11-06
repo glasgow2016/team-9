@@ -20,7 +20,7 @@ let addPuzzle = function (puzzleId, puzzleData) {
     throw new Error("No location specified for puzzle");
   }
 
-  if(!_.hasIn(puzzleData.location, "lat") || !_.hasIn(puzzleData.location, "long")) {
+  if(!_.hasIn(puzzleData.location, "latitude") || !_.hasIn(puzzleData.location, "longitude")) {
     throw new Error("Invalid location specified for puzzle");
   }
 
@@ -36,11 +36,7 @@ let registerUser = function(userData) {
     throw new Error("User already registered");
   }
 
-  if(!_.hasIn(userData, "username")) {
-    throw new Error("Username not provided");
-  }
-
-  users[userData.deviceId] = new User(userData.deviceId, userData.username);
+  users[userData.deviceId] = new User(userData.deviceId);
 }
 
 let getUser = function(deviceId) {
@@ -56,15 +52,15 @@ let updateUserLocation = function(deviceId, locationObj) {
     throw new Error("User not registered");
   }
 
-  if(!_.hasIn(locationObj, "lat")) {
+  if(!_.hasIn(locationObj, "latitude")) {
     throw new Error("Latitude not found");
   }
 
-  if(!_.hasIn(locationObj, "long")) {
+  if(!_.hasIn(locationObj, "longitude")) {
     throw new Error("Longitude not found");
   }
 
-  users[deviceId].updateLocation(locationObj.lat, locationObj.long);
+  users[deviceId].updateLocation(locationObj.latitude, locationObj.longitude);
 }
 
 let solveNearby = function(puzzleId) {
