@@ -5,16 +5,9 @@ angular.module('starter.controllers', [])
       $state.go("#/tab/home/info");
     }
 
-    $scope.register = function () {
-      if ($scope.registered) {
-        $state.go("#/tab/map");
-      }
-      else {
-        $state.go("#/tab/home/register");
-      }
-
+    $scope.showMap = function () {
+      $state.go("#/tab/map");
     }
-
   })
 
 

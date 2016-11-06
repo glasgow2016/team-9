@@ -1,0 +1,24 @@
+<ion-view view-title="Challenge">
+  <ion-nav-bar class="bar-stable bar-positive">
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+    <ion-content>
+
+      <div class="card question-card">
+        <div class="item item-text-wrap">
+          {{challenges.question}}
+          {{challenges.option1}}
+          {{challenges.option2}}
+          {{challenges.option3}}
+          {{challenges.option4}}
+        </div>
+      </div>
+
+      <div class="card answer-card">
+        <div class="item item-text-wrap">
+          {{challenges.answer}}
+        </div>
+      </div>
+
+    </ion-content>
+</ion-view>
