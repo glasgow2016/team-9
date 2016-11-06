@@ -1,12 +1,11 @@
 "use strict";
 
-const util = require("./util");
+const modelUtil = require("./util");
 const _ = require("lodash");
 
-class User {
+module.exports = class User {
   constructor(deviceId, username) {
     this.deviceId = deviceId;
-    this.username = username;
     this.puzzlesCompleted = [];
   }
 

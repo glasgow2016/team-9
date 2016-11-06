@@ -36,11 +36,7 @@ let registerUser = function(userData) {
     throw new Error("User already registered");
   }
 
-  if(!_.hasIn(userData, "username")) {
-    throw new Error("Username not provided");
-  }
-
-  users[userData.deviceId] = new User(userData.deviceId, userData.username);
+  users[userData.deviceId] = new User(userData.deviceId);
 }
 
 let getUser = function(deviceId) {
