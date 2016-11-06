@@ -6,7 +6,7 @@ angular.module('starter.controllers', [])
     }
 
     $scope.startGame = function () {
-      $state.go("tab.challenge");
+      $state.go("tab.home-whyHere");
     }
   })
 
@@ -19,7 +19,30 @@ angular.module('starter.controllers', [])
     $scope.registered = true;
   })
 
-  .controller('MapCtrl', function ($scope) {
+
+
+
+  .controller('WhyCtrl', function ($scope, $state) {
+    $scope.goToChallenge = function () {
+      $state.go("tab.challenge");
+    }
+
+    $scope.challenges = challenges;
+
+  })
+
+
+
+  .controller('ChallengeCtrl', function ($scope) {
+
+    $scope.challenges = challenges;
+
+
+
+  })
+
+
+.controller('MapCtrl', function ($scope) {
 
     function initMap() {
       var map = new google.maps.Map(document.getElementById('map'), {
